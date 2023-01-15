@@ -108,6 +108,7 @@ create_test!(works_in, r#macro);
 fn main() {
     let _ = StructName;
     let _ = EnumName::A;
+    let _ = EnumName::B;
     works_with_trailing_comma();
     _works_with_underscores_();
     __();
