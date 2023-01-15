@@ -151,6 +151,8 @@ impl Parse for IdentPart {
             Ok(Self::Bool(input.parse()?))
         } else if input.peek(LitStr) {
             let string = input.parse::<LitStr>()?;
+            let replaced = string.value().replace(" ", "_");
+            let string = LitStr::new(&replaced, string.span());
             if string.value().contains(|c: char| !c.is_ascii_alphanumeric() && c != '_') {
                 Err(syn::Error::new(
                     string.span(),
