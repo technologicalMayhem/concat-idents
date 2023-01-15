@@ -105,6 +105,18 @@ macro_rules! create_test {
 
 create_test!(works_in, r#macro);
 
+macro_rules! complex_string {
+    ($string:literal) => {
+        concat_idents!(fn_name = $string, {
+            fn fn_name() {
+                println!($string);
+            }
+        });
+    };
+}
+
+complex_string!("works with sTrInGs, that wouldn't work as method names😎!");
+
 fn main() {
     let _ = StructName;
     let _ = EnumName::A;
@@ -120,4 +132,5 @@ fn main() {
     super_is_also_possible();
     works_in_macro();
     _works_while_1stuff_is_mixed();
+    works_with_strings_that_wouldnt_work_as_method_names();
 }
